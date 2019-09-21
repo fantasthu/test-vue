@@ -1,60 +1,68 @@
 <template>
   <div class="hello">
-    <!-- 父子组件声明周期的体验 -->
-    <el-card class="card">
-      <div class="title">父子组件声明周期的体验(打开控制台)</div>
-      <el-button @click="handleClick">我来改变数据</el-button>
-      <el-button @click="handleChangeChild">我来改变我儿子</el-button>
-      <el-button @click="handleDestroyChild">我来灭了我儿子</el-button>
-      <!-- <Child :message="childMessage" :childData="childData" v-if="childShow" /> -->
-      <ul>
-        <li v-for="item in list" :key="item.index">{{ item.value }}</li>
-      </ul>
-    </el-card>
-    <!-- v-model的应用 -->
-    <el-card class="card">
-      <div class="title">v-model语法糖的应用</div>
-      <el-button @click="showModel">占时弹框</el-button>
-      <ModelChild v-model="showModelStatus" />
-      {{ showModelStatus }}
-    </el-card>
-    <!-- this.$nextTick的应用 -->
-    <el-card class="card">
-      <div class="title" @click="toggleClick">this.$nextTick的应用</div>
-      <div class="tick-des">
-        <textarea v-show="showInput" class="tick-content" :value="input" @input="update"></textarea>
-        <div v-html="compiledMarkdown" style="text-align:left"></div>
-      </div>
-    </el-card>
-    <!-- slot的应该 -->
-    <el-card class="card">
-      <div class="title">slot的应用</div>
-      <div class="content">
-        <div class="h3">子组件的定义:</div>
-        <div class="h3-des" v-text="slothtml1" style="white-space: pre-wrap;"></div>
-        <div class="h3">父组件中的使用:</div>
-        <div class="h3-des" v-text="slothtml2" style="white-space: pre-wrap;"></div>
-      </div>
-    </el-card>
-    <!-- 动态组件 -->
-    <el-card class="card">
-      <div class="title">动态组件的使用</div>
-      <div class="content">
-        <div class="h3">应用</div>
-        <div class="h3-des" v-text="slothtml3" style="white-space: pre-wrap;"></div>
-      </div>
-    </el-card>
-    <!-- mixins 混入 -->
-    <el-card class="card">
-      <div class="title">mixins混用</div>
-      <div class="content">
-        <div class="h3">mixin类似父子类的概念,先执行生命周期,子类可以使用父类方法</div>
-        <div class="h3-des" style="white-space: pre-wrap;">
-          参考地址:
-          https://juejin.im/entry/586b06811b69e60063f29002
+    <svg class="svg-bg" viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path
+        d="M0.00,49.98 C195.26,107.06 143.90,0.50 501.12,52.78 L500.00,0.00 L0.00,0.00 Z"
+        style="stroke: none;fill: #08f;"
+      />
+    </svg>
+    <div class="card-box">
+      <!-- 父子组件声明周期的体验 -->
+      <el-card class="card">
+        <div class="title">父子组件声明周期的体验(打开控制台)</div>
+        <el-button @click="handleClick">我来改变数据</el-button>
+        <el-button @click="handleChangeChild">我来改变我儿子</el-button>
+        <el-button @click="handleDestroyChild">我来灭了我儿子</el-button>
+        <!-- <Child :message="childMessage" :childData="childData" v-if="childShow" /> -->
+        <ul>
+          <li v-for="item in list" :key="item.index">{{ item.value }}</li>
+        </ul>
+      </el-card>
+      <!-- v-model的应用 -->
+      <el-card class="card">
+        <div class="title">v-model语法糖的应用</div>
+        <el-button @click="showModel">占时弹框</el-button>
+        {{ showModelStatus }}
+      </el-card>
+      <!-- this.$nextTick的应用 -->
+      <el-card class="card">
+        <div class="title" @click="toggleClick">this.$nextTick的应用</div>
+        <div class="tick-des">
+          <textarea v-show="showInput" class="tick-content" :value="input" @input="update"></textarea>
+          <div v-html="compiledMarkdown" style="text-align:left"></div>
         </div>
-      </div>
-    </el-card>
+      </el-card>
+      <!-- slot的应该 -->
+      <el-card class="card">
+        <div class="title">slot的应用</div>
+        <div class="content">
+          <div class="h3">子组件的定义:</div>
+          <div class="h3-des" v-text="slothtml1" style="white-space: pre-wrap;"></div>
+          <div class="h3">父组件中的使用:</div>
+          <div class="h3-des" v-text="slothtml2" style="white-space: pre-wrap;"></div>
+        </div>
+      </el-card>
+      <!-- 动态组件 -->
+      <el-card class="card">
+        <div class="title">动态组件的使用</div>
+        <div class="content">
+          <div class="h3">应用</div>
+          <div class="h3-des" v-text="slothtml3" style="white-space: pre-wrap;"></div>
+        </div>
+      </el-card>
+      <!-- mixins 混入 -->
+      <el-card class="card">
+        <div class="title">mixins混用</div>
+        <div class="content">
+          <div class="h3">mixin类似父子类的概念,先执行生命周期,子类可以使用父类方法</div>
+          <div class="h3-des" style="white-space: pre-wrap;">
+            参考地址:
+            https://juejin.im/entry/586b06811b69e60063f29002
+          </div>
+        </div>
+      </el-card>
+    </div>
+    <ModelChild v-model="showModelStatus" />
   </div>
 </template>
 
@@ -209,6 +217,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+.svg-bg {
+  position: absolute;
+}
+.card-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 30px;
+}
 .title {
   font-weight: bold;
   margin-bottom: 30px;
@@ -236,5 +253,38 @@ export default {
   text-align: left;
   background-color: #eee;
   padding: 15px;
+}
+.card {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  transform: matrix(1, 0, 0, 1, 0, -30);
+  z-index: 19;
+  animation: card-ani 1s ease forwards;
+}
+.el-button:hover {
+  transform: matrix(1, 0, 0, 1, 0, -1);
+  box-shadow: 0 0 3px currentColor;
+  transition: all 0.5 ease;
+}
+
+@keyframes card-ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+
+@keyframes swell {
+  0%,
+  100% {
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
 }
 </style>
